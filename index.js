@@ -8,14 +8,16 @@ app.use(express.json());
 // Redirigir tráfico al servicio de Usuarios
 app.use("/users", createProxyMiddleware({
   target: process.env.USER_SERVICE_URL,
-  changeOrigin: true
+  changeOrigin: true,
+  logLevel: "debug"
 }));
 
-// Redirigir tráfico al servicio de Productos
 app.use("/products", createProxyMiddleware({
   target: process.env.PRODUCT_SERVICE_URL,
-  changeOrigin: true
+  changeOrigin: true,
+  logLevel: "debug"
 }));
+
 
 // Servidor del API Gateway
 const PORT = process.env.PORT || 3000;
